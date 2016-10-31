@@ -1,0 +1,6 @@
+Class : 2
+Date : October 24, 2016
+Day : Monday
+
+Task : 
+1. Find Area 

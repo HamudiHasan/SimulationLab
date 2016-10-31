@@ -1,0 +1,18 @@
+Class : 1
+Date : October 17, 2016
+Day : Monday
+
+Task : 
+1. Random Number Genaration
+2. Monte Carlo Simulation ( Find the value of pi)
+
+
+
+Formula:
+Uniform : Matchin to star
+pi = 4*(#pointsInCircel/#pints in sq)
+
+
+Report : 
+1. Why number error decreses by  of try increse er fole , error kome ? (cause + math defination)
+2. 
