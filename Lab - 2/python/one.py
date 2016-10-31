@@ -13,5 +13,5 @@ for num in range(1,10000):
     if x<0 and y>0 and y-x<=1:
         count+=1
     if x>0 and y <0 and x-y>=1:
-        count++1
+        count+=1
 print((count/10000)*4)
