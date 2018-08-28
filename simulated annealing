@@ -1,0 +1,133 @@
+#include<bits/stdc++.h>
+#include<math.h>
+#define N 10
+
+using namespace std;
+float probablity = 0.0001;
+struct Node{
+    vector<int> Q;
+    int conflict;
+
+    Node(){
+        Q.resize(N);
+    }
+
+    void init(){
+        for(int i=0; i<N; i++) Q[i] = rand()%N;
+    }
+
+    void conflict_check()
+    {
+        conflict = 0;
+
+        /// --------------- Work 1 ---------------------------------------------------------------------------------->>>>
+        ///*** Calculate the conflict and store in the variable conflict for the board Q[] ***///
+for (int i=0;i<N;i++){
+    for(int j=1;j<N;j++){
+            if(Q[i]==Q[j]|| (abs(Q[i]-Q[j])== abs(j-i)))
+            conflict++;
+
+    }
+  }
+    }
+
+
+    Node successor()
+    {
+node temp;
+temp.Q = Q;
+temp.conflict_check();
+    }
+
+};
+
+void print(Node Queen){
+
+    bool A[N][N] = {0};
+
+    for(int i=0; i<N; i++) A[Queen.Q[i]][i] = true;
+
+    for(int i=0; i<N; i++){
+        for(int j=0; j<N; j++){
+            if(A[i][j]==1) cout << "Q";
+            else cout << ".";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+
+bool probablity_check(Node Queen,Node temp, float temperature)
+    {
+        int delta= temp.conflict-Queen.conflict;
+  if (delta < 0) {
+        return true;
+    }
+
+    var C = Math.exp(delta / temperature);
+    var R = Math.random();
+
+    if (R < C) {
+        return true;
+    }
+
+    return false;
+
+    }
+
+
+int main()
+{
+    srand(time(NULL));
+
+    Node Queen;
+    Queen.init();
+    float temperature = 10;
+    double coolingFactor = 0.95;
+
+
+    Node best= Queen;
+    best.conflict_check();
+    int num = 0;
+    while(num < 10000000)
+    {
+        num++;
+        if(temperature<0.001)
+        {
+            break;
+        }
+        //print(Queen);
+        Node temp = Queen.successor();
+
+        temp.conflict_check();
+
+        if(temp.conflict<best.conflict)
+        {
+            best = temp;
+        }
+
+        if(temp.conflict < Queen.conflict)
+        {
+            Queen = temp;
+        }
+        else
+        {
+            probablity = probablity_check(Queen,temp,temperature);
+            if(probablity == true)
+            {
+                Queen = temp;
+            }
+        }
+        if(temp.conflict==0){
+            cout << "Hurray! Solution Found !!!!" << endl;
+            //print(temp);
+            break;
+        }
+        temperature=temperature*coolingFactor;
+
+    }
+    printf("No. of conflicts : %d\n",best.conflict);
+    print(best);
+    return 0;
+}
